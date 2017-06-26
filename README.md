@@ -1,2 +1,2 @@
-# app-dipy-AFQ
+# brainpy-AFQ
 Segments White Matter Tracts
