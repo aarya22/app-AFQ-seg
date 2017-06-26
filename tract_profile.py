@@ -48,13 +48,13 @@ img = nib.load(data_file)
 
 print("Calculating DTI...")
 if not op.exists('./dti_FA.nii.gz'):
-    dti_params = dti.fit_dti(hardi_fdata, hardi_fbval, hardi_fbvec,
+    dti_params = dti.fit_dti(data_file, data_bval, data_bvec,
                              out_dir='.')
 else:
     dti_params = {'FA': './dti_FA.nii.gz',
                   'params': './dti_params.nii.gz'}
 
-tg = nib.streamlines.load('./dti_streamlines.tck').tractogram
+tg = nib.streamlines.load('csa_prob.trk').tractogram
 streamlines = tg.apply_affine(np.linalg.inv(img.affine)).streamlines
 
 # Use only a small portion of the streamlines, for expedience:
@@ -73,16 +73,16 @@ for name in bundle_names:
 
 print("Registering to template...")
 MNI_T2_img = dpd.read_mni_template()
-bvals, bvecs = read_bvals_bvecs()
+bvals, bvecs = read_bvals_bvecs(data_bval, data_bvec)
 gtab = gradient_table(bvals, bvecs, b0_threshold=100)
 mapping = reg.syn_register_dwi(data_file, gtab)
 reg.write_mapping(mapping, './mapping.nii.gz')
 
 
 print("Segmenting fiber groups...")
-fiber_groups = seg.segment(hardi_fdata,
-                           hardi_fbval,
-                           hardi_fbvec,
+fiber_groups = seg.segment(data_file,
+                           data_bval,
+                           data_bvec,
                            streamlines,
                            bundles,
                            reg_template=MNI_T2_img,
