@@ -34,12 +34,7 @@ def main():
 	data_file = str(config['data_file'])
 	data_bval = str(config['data_bval'])
 	data_bvec = str(config['data_bvec'])
-	print(data_file)
-	print(data_bval)
-	print(data_bvec)
-	print(type(data_file))
-	print(type(data_bvec))
-	print(type(data_bval))
+
 
 	img = nib.load(data_file)
 
