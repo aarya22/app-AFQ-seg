@@ -81,7 +81,7 @@ def main():
 			           as_generator=False,
 			           affine=img.affine)
 
-
+	"""
 	FA_img = nib.load(dti_params['FA'])
 	FA_data = FA_img.get_data()
 
@@ -92,4 +92,5 @@ def main():
 	    ax.plot(profile)
 	    ax.set_title(bundle)
 	plt.savefig('bundle.png')
+	"""
 main()
