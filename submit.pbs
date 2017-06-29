@@ -43,7 +43,8 @@ if [ $ret -ne 0 ]; then
     exit $ret
 fi
 
-if [ -s mapping.nii.gz ];
+count=$(ls tract/*.trk | wc -l)
+if [ $count -eq 4 ];
 then 
 	echo 0 > finished
 else 
