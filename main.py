@@ -81,10 +81,14 @@ def main():
 			           as_generator=False,
 			           affine=img.affine)
 	
+	path = os.getcwd() + '/tract/'
+        if not os.path.exists(path):
+        	os.makedirs(path)
+	
 	for fg in fiber_groups:
-		streamlines = fiber_groups[fg]
+	    	streamlines = fiber_groups[fg]
 		fname = fg + ".trk"
-		aus.write_trk(fname, streamlines, affine=img.affine, shape=img.shape):
+		aus.write_trk(fname, streamlines)
 
 	"""
 	FA_img = nib.load(dti_params['FA'])
