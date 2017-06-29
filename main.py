@@ -35,7 +35,6 @@ def main():
 	data_bval = str(config['data_bval'])
 	data_bvec = str(config['data_bvec'])
 
-
 	img = nib.load(data_file)
 
 	print("Calculating DTI...")
@@ -54,10 +53,10 @@ def main():
 	templates = afd.read_templates()
 	bundle_names = ["CST", "ILF"]
 
-	bundles = {}
+	tract_names = {}
 	for name in bundle_names:
 	    for hemi in ['_R', '_L']:
-		bundles[name + hemi] = {'ROIs': [templates[name + '_roi1' + hemi],
+		tract_names[name + hemi] = {'ROIs': [templates[name + '_roi1' + hemi],
 			                         templates[name + '_roi1' + hemi]],
 			                'rules': [True, True]}
 
@@ -71,11 +70,11 @@ def main():
 
 
 	print("Segmenting fiber groups...")
-	fiber_groups = seg.segment(data_file,
+	tract_anatomy = seg.segment(data_file,
 			           data_bval,
 			           data_bvec,
 			           streamlines,
-			           bundles,
+			           tract_names,
 			           reg_template=MNI_T2_img,
 			           mapping=mapping,
 			           as_generator=False,
@@ -85,11 +84,12 @@ def main():
         if not os.path.exists(path):
         	os.makedirs(path)
 	
-	for fg in fiber_groups:
-	    	streamlines = fiber_groups[fg]
-		fname = fg + ".trk"
-		aus.write_trk(fname, streamlines)
-
+	for fg in tract_anatomy:
+	    	streamlines = tract_anatomy[fg]
+		fname = fg + ".tck"
+		#aus.write_trk(fname, streamlines)
+		trg = nib.streamlines.Tractogram(streamlines)
+		nib.streamlines.save(trg, fname)
 	"""
 	FA_img = nib.load(dti_params['FA'])
 	FA_data = FA_img.get_data()
