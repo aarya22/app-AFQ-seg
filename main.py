@@ -80,6 +80,11 @@ def main():
 			           mapping=mapping,
 			           as_generator=False,
 			           affine=img.affine)
+	
+	for fg in fiber_groups:
+		streamlines = fiber_groups[fg]
+		fname = fg + ".trk"
+		aus.write_trk(fname, streamlines, affine=img.affine, shape=img.shape):
 
 	"""
 	FA_img = nib.load(dti_params['FA'])
