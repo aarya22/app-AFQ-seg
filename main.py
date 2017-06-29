@@ -34,12 +34,7 @@ def main():
 	data_file = str(config['data_file'])
 	data_bval = str(config['data_bval'])
 	data_bvec = str(config['data_bvec'])
-	print(data_file)
-	print(data_bval)
-	print(data_bvec)
-	print(type(data_file))
-	print(type(data_bvec))
-	print(type(data_bval))
+
 
 	img = nib.load(data_file)
 
@@ -85,8 +80,17 @@ def main():
 			           mapping=mapping,
 			           as_generator=False,
 			           affine=img.affine)
+	
+	path = os.getcwd() + '/tract/'
+        if not os.path.exists(path):
+        	os.makedirs(path)
+	
+	for fg in fiber_groups:
+	    	streamlines = fiber_groups[fg]
+		fname = fg + ".trk"
+		aus.write_trk(fname, streamlines)
 
-
+	"""
 	FA_img = nib.load(dti_params['FA'])
 	FA_data = FA_img.get_data()
 
@@ -97,4 +101,5 @@ def main():
 	    ax.plot(profile)
 	    ax.set_title(bundle)
 	plt.savefig('bundle.png')
+	"""
 main()
