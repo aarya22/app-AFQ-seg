@@ -74,12 +74,12 @@ def main():
         if not os.path.exists(path):
                 os.makedirs(path)
 
-        for fg in fiber_groups:
-            streamlines = fiber_groups[fg]
+        for fg in tract_anatomy:
+            streamlines = tract_anatomy[fg]
             fname = fg + ".tck"
             #aus.write_trk(fname, streamlines)
             trg = nib.streamlines.Tractogram(streamlines, affine_to_rasmm=img.affine)
-            nib.streamlines.save(trg, fname)
+            nib.streamlines.save(trg, path+'/'+fname)
 
 main()
                                                                                                                                                                   
