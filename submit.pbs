@@ -21,7 +21,7 @@ if [ $ENV == "IUHPC" ]; then
 		source activate app-afq-seg
 	fi
 	
-	export PYTHONPATH=$PYTHONPATH:/N/u/aryaam/Karst/github_repos/dipy
+	export PYTHONPATH=$PYTHONPATH:/N/u/aryaam/Karst/dipy
 	export PYTHONPATH=$PYTHONPATH:/N/u/aryaam/Karst/github_repos/nibabel
 	export PYTHONPATH=$PYTHONPATH:/N/u/aryaam/Karst/github_repos/pyAFQ
 fi
@@ -44,7 +44,8 @@ if [ $ret -ne 0 ]; then
     exit $ret
 fi
 
-if [ -s mapping.nii.gz ];
+count=$(ls tract/*.tck | wc -l)
+if [ $count -eq 4 ];
 then 
 	echo 0 > finished
 else 
