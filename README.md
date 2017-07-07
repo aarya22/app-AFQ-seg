@@ -5,21 +5,15 @@ Segments White Matter Tracts
 
 ### IU Carbonate
 
-It requires a conda environment created with following packages installed
+Git clone pyAFQ somewhere that brain-life user has access to.
 
 ```
-conda create -n app-afq-seg
-source activate app-afq-seg
-conda config --add channels conda-forge
-conda install boto3
-conda install numpy
-conda install scipy
-```
-
-On all computing resources, following packages must be installed and accessible 
-
-```
-/N/u/aryaam/Karst/dipy
-/N/u/aryaam/Karst/github_repos/nibabel
 /N/u/aryaam/Karst/github_repos/pyAFQ
 ```
+
+And install all deps are installed via pip install --user
+
+```
+pip install --user dipy nibabel boto3 cloudpickle dask toolz 
+```
+
