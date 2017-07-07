@@ -1,6 +1,4 @@
 import os.path as op
-import matplotlib
-import matplotlib.pyplot as plt
 import numpy as np
 import nibabel as nib
 import dipy.data as dpd
@@ -18,7 +16,6 @@ import AFQ.dti as dti
 import AFQ.segmentation as seg
 import os
 
-plt.switch_backend('agg')
 
 def main():
         with open('config.json') as config_json:
@@ -84,17 +81,5 @@ def main():
             trg = nib.streamlines.Tractogram(streamlines, affine_to_rasmm=img.affine)
             nib.streamlines.save(trg, fname)
 
-        """
-        FA_img = nib.load(dti_params['FA'])
-        FA_data = FA_img.get_data()
-
-        print("Extracting tract profiles...")
-        for bundle in bundles:
-            fig, ax = plt.subplots(1)
-            profile = seg.calculate_tract_profile(FA_data, fiber_groups[bundle])
-            ax.plot(profile)
-            ax.set_title(bundle)
-            plt.savefig(str(bundle) +  '.png')
-        """
 main()
                                                                                                                                                                   
