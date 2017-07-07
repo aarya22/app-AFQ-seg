@@ -24,7 +24,7 @@ def main():
         data_file = str(config['data_file'])
         data_bval = str(config['data_bval'])
         data_bvec = str(config['data_bvec'])
-        #trk_data = str(config['trk_data'])
+        tck_data = str(config['tck_data'])
 
         img = nib.load(data_file)
 
@@ -35,8 +35,8 @@ def main():
             dti_params = {'FA': './dti_FA.nii.gz',
                           'params': './dti_params.nii.gz'}
         #Use this one eventually
-        #tg = nib.streamlines.load(trk_data).tractogram
-        tg = nib.streamlines.load('track.trk').tractogram
+        tg = nib.streamlines.load(tck_data).tractogram
+        #tg = nib.streamlines.load('track.tck').tractogram
         streamlines = tg.apply_affine(np.linalg.inv(img.affine)).streamlines
 
         # Use only a small portion of the streamlines, for expedience:
