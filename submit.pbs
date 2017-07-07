@@ -18,6 +18,7 @@ if [ $ENV == "IUHPC" ]; then
 	if [ $HPC == "CARBONATE" ]; then
 		module unload python
 		module load anaconda/python2.7
+		source activate app-afq-seg
 	fi
 	
 	export PYTHONPATH=$PYTHONPATH:/N/u/aryaam/Karst/github_repos/dipy
