@@ -20,7 +20,7 @@ if [ $ENV == "IUHPC" ]; then
 		module load anaconda/python2.7
 	fi
 	
-	export PYTHONPATH=$PYTHONPATH:/N/u/aryaam/Karst/github_repos/dipy
+	export PYTHONPATH=$PYTHONPATH:/N/u/aryaam/Karst/dipy
 	export PYTHONPATH=$PYTHONPATH:/N/u/aryaam/Karst/github_repos/nibabel
 	export PYTHONPATH=$PYTHONPATH:/N/u/aryaam/Karst/github_repos/pyAFQ
 fi
