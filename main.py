@@ -78,11 +78,11 @@ def main():
                 os.makedirs(path)
 
         for fg in fiber_groups:
-		streamlines = fiber_groups[fg]
-		fname = fg + ".tck"
-		#aus.write_trk(fname, streamlines)
-		trg = nib.streamlines.Tractogram(streamlines, affine_to_rasmm=img.affine)
-		nib.streamlines.save(trg, fname)
+            streamlines = fiber_groups[fg]
+            fname = fg + ".tck"
+            #aus.write_trk(fname, streamlines)
+            trg = nib.streamlines.Tractogram(streamlines, affine_to_rasmm=img.affine)
+            nib.streamlines.save(trg, fname)
 
         """
         FA_img = nib.load(dti_params['FA'])

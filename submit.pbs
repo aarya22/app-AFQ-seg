@@ -1,6 +1,6 @@
 #!/bin/bash
-#PBS -l nodes=3:ppn=16:dc2,walltime=1:00:00
-#PBS -N app-dipy-tracking
+#PBS -l nodes=3:ppn=16:dc2,walltime=0:40:00
+#PBS -N app-AFQ-seg
 #PBS -V
 
 

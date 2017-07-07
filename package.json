@@ -1,5 +1,5 @@
 {
-  "name": "app-dipy-seg",
+  "name": "app-AFQ-seg",
   "version": "1.0.0",
   "description": "White Matter Segmentation",
   "main": "index.js",
@@ -11,12 +11,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/brain-life/app-dipy-seg"
+    "url": "git+https://github.com/brain-life/app-AFQ-seg"
   },
   "author": "Aman Arya <aarya22@uw.edu>",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/brain-life/app-dipy-seg/issues"
+    "url": "https://github.com/brain-life/app-AFQ-seg/issues"
   },
-  "homepage": "https://github.com/brain-life/app-dipy-seg#readme"
+  "homepage": "https://github.com/brain-life/app-AFQ-seg#readme"
 }
