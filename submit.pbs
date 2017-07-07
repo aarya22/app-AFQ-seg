@@ -18,6 +18,7 @@ if [ $ENV == "IUHPC" ]; then
 	if [ $HPC == "CARBONATE" ]; then
 		module unload python
 		module load anaconda/python2.7
+		source activate app-afq-seg
 	fi
 	
 	export PYTHONPATH=$PYTHONPATH:/N/u/aryaam/Karst/dipy
@@ -43,7 +44,7 @@ if [ $ret -ne 0 ]; then
     exit $ret
 fi
 
-count=$(ls tract/*.trk | wc -l)
+count=$(ls tract/*.tck | wc -l)
 if [ $count -eq 4 ];
 then 
 	echo 0 > finished
