@@ -35,7 +35,7 @@ fi
 echo "running main"
 
 #matlab -nodisplay -nosplash -r main
-time python $SERVICE_DIR/main.py
+time python -u $SERVICE_DIR/main.py
 
 ret=$?
 if [ $ret -ne 0 ]; then

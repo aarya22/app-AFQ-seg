@@ -1,6 +1,4 @@
 import os.path as op
-import matplotlib
-import matplotlib.pyplot as plt
 import numpy as np
 import nibabel as nib
 import dipy.data as dpd
@@ -18,7 +16,6 @@ import AFQ.dti as dti
 import AFQ.segmentation as seg
 import os
 
-plt.switch_backend('agg')
 
 def main():
         with open('config.json') as config_json:
@@ -27,7 +24,7 @@ def main():
         data_file = str(config['data_file'])
         data_bval = str(config['data_bval'])
         data_bvec = str(config['data_bvec'])
-        #trk_data = str(config['trk_data'])
+        tck_data = str(config['tck_data'])
 
         img = nib.load(data_file)
 
@@ -37,13 +34,11 @@ def main():
         else:
             dti_params = {'FA': './dti_FA.nii.gz',
                           'params': './dti_params.nii.gz'}
-        #Use this one eventually
-        #tg = nib.streamlines.load(trk_data).tractogram
-        tg = nib.streamlines.load('track.trk').tractogram
-        streamlines = tg.apply_affine(np.linalg.inv(img.affine)).streamlines
 
-        # Use only a small portion of the streamlines, for expedience:
-        streamlines = streamlines[::100]
+        #Use this one eventually
+        tg = nib.streamlines.load(tck_data).tractogram
+        #tg = nib.streamlines.load('track.tck').tractogram
+        streamlines = tg.apply_affine(img.affine).streamlines
 
         templates = afd.read_templates()
         bundle_names = ["CST", "ILF"]
@@ -77,24 +72,12 @@ def main():
         if not os.path.exists(path):
                 os.makedirs(path)
 
-        for fg in fiber_groups:
-            streamlines = fiber_groups[fg]
+        for fg in tract_anatomy:
+            streamlines = tract_anatomy[fg]
             fname = fg + ".tck"
             #aus.write_trk(fname, streamlines)
             trg = nib.streamlines.Tractogram(streamlines, affine_to_rasmm=img.affine)
-            nib.streamlines.save(trg, fname)
+            nib.streamlines.save(trg, path+'/'+fname)
 
-        """
-        FA_img = nib.load(dti_params['FA'])
-        FA_data = FA_img.get_data()
-
-        print("Extracting tract profiles...")
-        for bundle in bundles:
-            fig, ax = plt.subplots(1)
-            profile = seg.calculate_tract_profile(FA_data, fiber_groups[bundle])
-            ax.plot(profile)
-            ax.set_title(bundle)
-            plt.savefig(str(bundle) +  '.png')
-        """
 main()
-                                                                                                                                                                  
+                                                                                                                                                     
