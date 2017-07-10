@@ -36,9 +36,11 @@ def main():
                           'params': './dti_params.nii.gz'}
 
         #Use this one eventually
-        tg = nib.streamlines.load(tck_data).tractogram
+        tg = nib.streamlines.load(tck_data)
         #tg = nib.streamlines.load('track.tck').tractogram
-        streamlines = tg.apply_affine(img.affine).streamlines
+        streamlines = tg.tractogram.apply_affine(img.affine).streamlines
+	
+	streamlines = streamlines[::100]
 
         templates = afd.read_templates()
         bundle_names = ["CST", "ILF"]
