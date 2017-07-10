@@ -34,13 +34,11 @@ def main():
         else:
             dti_params = {'FA': './dti_FA.nii.gz',
                           'params': './dti_params.nii.gz'}
+
         #Use this one eventually
         tg = nib.streamlines.load(tck_data).tractogram
         #tg = nib.streamlines.load('track.tck').tractogram
-        streamlines = tg.apply_affine(np.linalg.inv(img.affine)).streamlines
-
-        # Use only a small portion of the streamlines, for expedience:
-        streamlines = streamlines[::100]
+        streamlines = tg.apply_affine(img.affine).streamlines
 
         templates = afd.read_templates()
         bundle_names = ["CST", "ILF"]
@@ -82,4 +80,4 @@ def main():
             nib.streamlines.save(trg, path+'/'+fname)
 
 main()
-                                                                                                                                                                  
+                                                                                                                                                     
