@@ -23,6 +23,7 @@ if [ $ENV == "IUHPC" ]; then
 	if [ $HPC == "CARBONATE" ]; then
 		#deps > pip install dipy nibabel boto3 cloudpickle dask toolz 
 		export PYTHONPATH=$PYTHONPATH:/N/u/aryaam/Karst/github_repos/pyAFQ
+		export PYTHONPATH=$PYTHONPATH:/N/u/aryaam/Karst/github_repos/nibabel
 	fi
 fi
 
